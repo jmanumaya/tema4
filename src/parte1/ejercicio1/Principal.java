@@ -4,9 +4,9 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		Punto punto1 = new Punto();
-		Punto punto2 = new Punto();
-		Punto punto3 = new Punto();
+		Punto punto1 = new Punto(1,2);
+		Punto punto2 = new Punto(3,4);
+		Punto punto3 = new Punto(4,5);
 		
 		int x = 4;
 		int y = 8;
