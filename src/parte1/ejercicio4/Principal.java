@@ -8,33 +8,39 @@ public class Principal {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		Articulo art1 = new Articulo();
-		
 		String nombre;
 		double precio;
-		int iva;
 		int cuantosQuedan;
 		
 		double pvp;
 		
-		System.out.println("Nombre del Articulo");
+		// Obtengo los valores para el objeto art1.
+		System.out.println("Nombre del Artículo:");
 		nombre = sc.nextLine();
-		System.out.println("Precio del Articulo");
+		System.out.println("Precio del Artículo:");
 		precio = sc.nextDouble();
-		System.out.println("IVA del Articulo");
-		iva = sc.nextInt();
-		System.out.println("Cuantos Quedan");
+		System.out.println("Cuántos Quedan:");
 		cuantosQuedan = sc.nextInt();
 		
-		art1.setNombre(nombre);
-		art1.setPrecio(precio);
-		art1.setCuantosQuedan(cuantosQuedan);
-		art1.setNombre(nombre);
+		// Creo el objeto usando el constructor con valores iniciales
+		Articulo art1 = new Articulo(nombre, precio, cuantosQuedan);
 		
-		pvp = precio * iva / 100;
+		// Modifico los valores con los setters
+		System.out.println("\nModificando los valores...");
+		System.out.println("Nuevo nombre:");
+		art1.setNombre(sc.next());
+		System.out.println("Nuevo precio:");
+		art1.setPrecio(sc.nextDouble());
+		System.out.println("Nuevos cuantos quedan:");
+		art1.setCuantosQuedan(sc.nextInt());
 		
-		System.out.println(art1.getNombre() + " - Precio:" + art1.getPrecio() + "€ - IVA:" + art1.getIVA() + "% - PVP:" + pvp + "€");
-
+		// Calculo el PVP, incluyendo el IVA en el precio
+		pvp = art1.getPrecio() + (art1.getPrecio() * art1.getIVA() / 100);
+		
+		// Muestro la información
+		System.out.println("\nArtículo modificado:");
+		System.out.println(art1.getNombre() + " - Precio: " + art1.getPrecio() + "€ - IVA: " + art1.getIVA() + "% - PVP: " + pvp + "€");
+		
+		sc.close();
 	}
-
 }
