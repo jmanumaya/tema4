@@ -54,12 +54,43 @@ public class Persona {
 
 	}
 	
-//	public void setDni(String dni) {
-//		
-//		if(dni != null && !dni.isBlank()) {
-//			this.DNI = dni;
-//		}
-//
-//	}
+	public boolean esMayorEdad() {
+		
+		boolean resultado = false;
+		
+		if(this.edad > 18) {
+			resultado = true;
+		}
+		
+		return resultado;
+		
+	}
+	
+	public boolean esJubilado(){
+		
+		boolean resultado = false;
+		
+		if(this.edad >= 65) {
+			resultado = true;
+		}
+		
+		return resultado;
+	}
+	
+	public int diferenciaEdad(Persona p) {
+		int diferencia;
+		
+		diferencia = Math.abs(this.edad-p.edad);
+
+		return diferencia;
+	}
+	
+	public String toString() {
+		String resultado = "DNI: " + this.DNI + "\n";
+		resultado += "Nombre: " + this.nombre + "\n";
+		resultado += "Apellidos: " + this.apellidos + "\n";
+		resultado += "Edad: " + this.edad + "\n";
+		return resultado;
+	}
 	
 }

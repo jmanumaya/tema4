@@ -17,9 +17,8 @@ public class Principal {
 		
 		String opcionLetra = "";
 		int opcionNumber;
-		int turno = 1;
-		
-		pintarDatos(per1, per2, turno);
+
+		System.out.println(per1);
 		
 		System.out.println("Hola " + per1.getNombre() + " ¿Deseas Cambiar alguno de tus datos? (si, no)");
 		opcionLetra = sc.nextLine().toLowerCase();
@@ -57,15 +56,13 @@ public class Principal {
 	            default -> System.out.println("Opción no válida. Inténtalo de nuevo.");
 	        }
 	        
-	        pintarDatos(per1, per2, turno);
+	        System.out.println(per1);
 	        
 	        System.out.println(per1.getNombre() + " ¿Deseas cambiar algún dato más? (si, no)");
 			opcionLetra = sc.nextLine().toLowerCase();
 		}
-		
-		++turno;
-		
-		pintarDatos(per1, per2, turno);
+
+		System.out.println(per2);
 		
 		System.out.println("Hola " + per2.getNombre() + " ¿Deseas Cambiar alguno de tus datos? (si, no)");
 		opcionLetra = sc.nextLine().toLowerCase();
@@ -103,42 +100,27 @@ public class Principal {
 	            default -> System.out.println("Opción no válida. Inténtalo de nuevo.");
 	        }
 	        
-	        pintarDatos(per1, per2, turno);
+	        System.out.println(per1);
 	        
 	        System.out.println(per2.getNombre() + " ¿Deseas cambiar algún dato más? (si, no)");
 			opcionLetra = sc.nextLine().toLowerCase();
 		}
 		
-		if (per1.getEdad() < 18) {
+		if (per1.esMayorEdad()) {
 			System.out.println(per1.getNombre() + " " + per1.getApellidos() + " con DNI " + per1.getDni() + " es menor de edad");
 		} else {
 			System.out.println(per1.getNombre() + " " + per1.getApellidos() + " con DNI " + per1.getDni() + " es mayor de edad");
 		}
 		
-		if (per2.getEdad() < 18) {
+		if (per2.esMayorEdad()) {
 			System.out.println(per2.getNombre() + " " + per2.getApellidos() + " con DNI " + per2.getDni() + " es menor de edad");
 		} else {
 			System.out.println(per2.getNombre() + " " + per2.getApellidos() + " con DNI " + per2.getDni() + " es mayor de edad");
 		}
 
+		System.out.println("Diferencia de edad de ambas personas: " + per1.diferenciaEdad(per2));
+
 		sc.close();
-	}
-	
-	private static void pintarDatos(Persona per1, Persona per2, int turno) {
-		
-		if (turno == 1) {
-			System.out.println("--- Datos de " + per1.getNombre() + " ---");
-			System.out.println("Nombre: " + per1.getNombre());
-			System.out.println("Apellidos: " + per1.getApellidos());
-			System.out.println("Edad: " + per1.getEdad());
-			System.out.println("DNI: " + per1.getDni());
-		} else {
-			System.out.println("--- Datos de " + per2.getNombre() + " ---");
-			System.out.println("Nombre: " + per2.getNombre());
-			System.out.println("Apellidos: " + per2.getApellidos());
-			System.out.println("Edad: " + per2.getEdad());
-			System.out.println("DNI: " + per2.getDni());
-		}
 	}
 
 }
