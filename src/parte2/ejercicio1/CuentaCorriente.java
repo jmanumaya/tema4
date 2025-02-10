@@ -7,7 +7,6 @@ public class CuentaCorriente {
 	private double saldo;
 	private enum Nacionalidad {ESPAÑOLA, EXTRANJERA};
 	private Nacionalidad nacionalidad;
-	private boolean saldoInicializado = false;
 	
 	// Constructor 1: Solo DNI y saldo
 	public CuentaCorriente(String DNI, double saldo) {
@@ -15,7 +14,6 @@ public class CuentaCorriente {
 		
 		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
 		this.saldo = Math.max(0, saldo);
-		saldoInicializado = true;
 	}
 
 	// Constructor 2: DNI, nombre y saldo
@@ -25,7 +23,6 @@ public class CuentaCorriente {
 		
 		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
 		this.saldo = Math.max(0, saldo);
-		saldoInicializado = true;
 	}
 
 	// Constructor 3: DNI, nombre, saldo y nacionalidad
@@ -35,7 +32,6 @@ public class CuentaCorriente {
 		
 		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
 		this.saldo = Math.max(0, saldo);
-		saldoInicializado = true;
 		
 		// Compruebo si la nacionalidad es valida llamando a la siguiente funcion y le doy el valor que me devuelva a this.nacionalidad si este ha sido valido.
 		this.nacionalidad = validarNacionalidad(nacionalidad);
