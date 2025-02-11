@@ -8,7 +8,7 @@ public class CuentaCorriente {
 	private enum Nacionalidad {ESPAÑOLA, EXTRANJERA};
 	private Nacionalidad nacionalidad;
 	
-	// Constructor 1: Solo DNI y saldo
+//	 Constructor 1: Solo DNI y saldo
 	public CuentaCorriente(String DNI, double saldo) {
 		this.DNI = validarDNI(DNI);
 		
@@ -34,7 +34,11 @@ public class CuentaCorriente {
 		this.saldo = Math.max(0, saldo);
 		
 		// Compruebo si la nacionalidad es valida llamando a la siguiente funcion y le doy el valor que me devuelva a this.nacionalidad si este ha sido valido.
-		this.nacionalidad = validarNacionalidad(nacionalidad);
+		this.nacionalidad = switch (nacionalidad.toUpperCase()) {
+			case "ESPAÑOLA" -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+			case "EXTRANJERA" -> this.nacionalidad = Nacionalidad.EXTRANJERA;
+			default -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+		};
 	}
 
 	// Getters y setters
@@ -53,19 +57,7 @@ public class CuentaCorriente {
 	}
 
 	public void setSaldo(double saldo) {
-		/* ¿Tengo ya un saldo inicializado? (Si) puedo asignar el saldo que me den idependientemente si es negativo o no.
-		   (No) (quiere decir que no tengo saldo almacenado) ¿el saldo introducido es 0 o positivo? (Si) puedo introducir el saldo (No) Salta exepción*/
 		
-//	    if (saldoInicializado || saldo >= 0) {
-//	        this.saldo = saldo;
-//	        saldoInicializado = true;
-//	    } else {
-//	        throw new IllegalArgumentException("No se puede asignar saldo negativo sin fondos previos.");
-//	    }
-		
-		if (this.saldo == 0 && saldo < 0) {
-	        throw new IllegalArgumentException("No se puede asignar saldo negativo sin fondos previos.");
-	    }
 	    this.saldo = saldo;
 	}
 
@@ -75,7 +67,11 @@ public class CuentaCorriente {
 
 	public void setNacionalidad(String nacionalidad) {
 		// Compruebo si la nacionalidad es valida llamando a la siguiente funcion y le doy el valor que me devuelva a this.nacionalidad si este ha sido valido.
-		this.nacionalidad = validarNacionalidad(nacionalidad);
+		this.nacionalidad = switch (nacionalidad.toUpperCase()) {
+		case "ESPAÑOLA" -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+		case "EXTRANJERA" -> this.nacionalidad = Nacionalidad.EXTRANJERA;
+		default -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+		};
 	}
 
 	// Métodos privados para validaciones
@@ -85,11 +81,6 @@ public class CuentaCorriente {
 		}
 		// Si no se lanza la exception devuelvo DNI para asignarselo a this.DNI en el constructor.
 		return DNI;
-	}
-
-	private Nacionalidad validarNacionalidad(String nacionalidad) {
-		// Si se ha introducido una nacionalidad valida la devuelvo para darle valor a this.nacionalidad si no salta una exepcion ya que no la encuentra.
-		return Nacionalidad.valueOf(nacionalidad.toUpperCase());
 	}
 	
 	public boolean sacarDinero(double dinero) {
@@ -129,11 +120,14 @@ public class CuentaCorriente {
 		return informacion;
 	}
 	
-	public boolean equals(CuentaCorriente CC) {
+	@Override
+	public boolean equals(Object cC) {
+		
+		CuentaCorriente cuenta2 = (CuentaCorriente) cC;
 		
 		boolean iguales = false;
 		
-		if (this.nombre.equals(CC.nombre) && this.DNI.equals(CC.DNI)) {
+		if (this.nombre.equals(cuenta2.nombre) && this.DNI.equals(cuenta2.DNI)) {
 			iguales = true;
 		}
 		
