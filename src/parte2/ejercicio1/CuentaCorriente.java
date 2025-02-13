@@ -132,11 +132,14 @@ public class CuentaCorriente {
 	 * @return true si la operación se realizó con éxito, false si no hay suficiente saldo.
 	 */
 	public boolean sacarDinero(double dinero) {
+		
+		boolean estado = false;
+		
 		if (dinero > 0 && this.saldo >= dinero) {
 			this.saldo -= dinero;
-			return true;
+			estado = true;
 		}
-		return false;
+		return estado;
 	}
 	
 	/**
@@ -145,11 +148,14 @@ public class CuentaCorriente {
 	 * @return true si el ingreso se realizó con éxito, false si el monto es inválido.
 	 */
 	public boolean ingresarDinero(double dinero) {
+		
+		boolean estado = false;
+		
 		if (dinero > 0) {
 			this.saldo += dinero;
-			return true;
+			estado = true;
 		}
-		return false;
+		return estado;
 	}
 	
 	/**
@@ -171,10 +177,8 @@ public class CuentaCorriente {
 	 */
 	@Override
 	public boolean equals(Object cC) {
-		if (!(cC instanceof CuentaCorriente)) {
-			return false;
-		}
 		CuentaCorriente cuenta2 = (CuentaCorriente) cC;
+		
 		return this.nombre.equals(cuenta2.nombre) && this.DNI.equals(cuenta2.DNI);
 	}
 }
