@@ -9,7 +9,7 @@ public class Principal {
         CuentaCorriente cuenta2 = new CuentaCorriente("87654321H", "Pepe", 3000);
         CuentaCorriente cuenta3 = new CuentaCorriente("98765432J", 500);
         
-        // Muestra de información inicial de las cuentas
+        // Muestro la información inicial de las cuentas
         System.out.println("Cuentas creadas:");
         System.out.println(cuenta1);
         System.out.println();
@@ -18,7 +18,7 @@ public class Principal {
         System.out.println(cuenta3);
         System.out.println("\n---------------------------");
 
-        // Cambiar la nacionalidad de una cuenta
+        // Cambio la nacionalidad de una cuenta
         cuenta2.setNacionalidad("extranjera");
         System.out.println("Nueva Nacionalidad de " + cuenta2.getNombre() + ": " + cuenta2.getNacionalidad());
         
