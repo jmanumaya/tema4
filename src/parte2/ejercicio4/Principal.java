@@ -6,7 +6,7 @@ public class Principal {
         // Creación de pizzas
         Pizza pizza1 = new Pizza(203949, "Mediana", "Funghi");
         Pizza pizza2 = new Pizza(304812, "Familiar", "Margarita");
-        Pizza pizza3 = new Pizza(203949, "Mediana", "CuatroQuesos"); // Mismo código que pizza1
+        Pizza pizza3 = new Pizza(203949, "Mediana", "CuatroQuesos"); // Mismo código que pizza 1
 
         // Muestro información de las pizzas
         System.out.println("Pizzas creadas:");
