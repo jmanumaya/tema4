@@ -14,7 +14,7 @@ public class Ejercicio2 {
 		double media = (num1 + num2) / 2;
 		
 		return media;
-		
+	
 	}
 
 }

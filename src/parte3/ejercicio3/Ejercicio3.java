@@ -22,7 +22,7 @@ public class Ejercicio3 {
 			num2 = temp;
 		}
 		
-		// Sumo todos los números entre num1 y num2 (inclusive)
+		// Sumo todos los números entre num1 y num2 (inclusive).
 		if (num1 > num2) {
 			return 0;
 		} else {

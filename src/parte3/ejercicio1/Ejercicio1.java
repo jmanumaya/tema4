@@ -14,6 +14,6 @@ public class Ejercicio1 {
 		double suma = num1 + num2;
 		
 		return suma;
-	} 
+	}
 
 }

@@ -9,7 +9,7 @@ public class Ejercicio4 {
 		return estado;
 		
 	}
-	
+
 	public boolean parseToBoolean(String argumento) {
 		
 		boolean estado = argumento.equals("true");
