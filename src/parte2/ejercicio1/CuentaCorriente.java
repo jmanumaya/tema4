@@ -1,6 +1,5 @@
 package parte2.ejercicio1;
 
-
 /**
  * La clase CuentaCorriente va a permitir poder crear distintos objetos con atributos como Nacionalidad, DNI, nombre y saldo 
  * correspondientes a datos básicos de una persona en una cuenta corriente.
@@ -8,7 +7,7 @@ package parte2.ejercicio1;
 public class CuentaCorriente {
 	
 	/**
-	 * 
+	 * Enum para definir la nacionalidad de la cuenta corriente.
 	 */
 	private enum Nacionalidad {ESPAÑOLA, EXTRANJERA};
 	private final String DNI;
@@ -19,62 +18,58 @@ public class CuentaCorriente {
 	/**
 	 * Constructor de la clase CuentaCorriente que va a permitir crear un objeto en base a los siguientes parámetros dados.
 	 * @param DNI dni de la persona.
-	 * @param saldo saldo que tiene la persona en la cuenta
+	 * @param saldo saldo que tiene la persona en la cuenta.
 	 */
 	public CuentaCorriente(String DNI, double saldo) {
 		this.DNI = validarDNI(DNI);
-		
-		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
+		// Entiendo que como saldo inicial va a ser siempre al menos 0. 
 		this.saldo = Math.max(0, saldo);
 	}
 
 	/**
-	 * Constructor de la clase CuentaCorriente que va a permitir crear un objeto en base a los siguientes parámetros dados.
+	 * Constructor de la clase CuentaCorriente con nombre incluido.
 	 * @param DNI dni de la persona.
 	 * @param nombre nombre de la persona.
-	 * @param saldo saldo que tiene la persona en la cuenta
+	 * @param saldo saldo que tiene la persona en la cuenta.
 	 */
 	public CuentaCorriente(String DNI, String nombre, double saldo) {
 		this.DNI = validarDNI(DNI);
 		this.nombre = (nombre != null && !nombre.isBlank()) ? nombre : "Sin nombre";
-		
-		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
+		// Entiendo que como saldo inicial va a ser siempre al menos 0. 
 		this.saldo = Math.max(0, saldo);
 	}
 
 	/**
-	 * Constructor de la clase CuentaCorriente que va a permitir crear un objeto en base a los siguientes parámetros dados.
+	 * Constructor de la clase CuentaCorriente con nombre y nacionalidad.
 	 * @param DNI dni de la persona.
 	 * @param nombre nombre de la persona.
-	 * @param saldo saldo que tiene la persona en la cuenta
+	 * @param saldo saldo que tiene la persona en la cuenta.
 	 * @param nacionalidad nacionalidad de la persona que crea la cuenta.
 	 */
 	public CuentaCorriente(String DNI, String nombre, double saldo, String nacionalidad) {
 		this.DNI = validarDNI(DNI);
 		this.nombre = (nombre != null && !nombre.isBlank()) ? nombre : "Sin nombre";
-		
-		// Entiendo que como saldo inicial va a ser siempre almenos 0. 
+		// Entiendo que como saldo inicial va a ser siempre al menos 0. 
 		this.saldo = Math.max(0, saldo);
-		
-		// Compruebo si la nacionalidad es valida llamando a la siguiente funcion y le doy el valor que me devuelva a this.nacionalidad si este ha sido valido.
+		// Compruebo si la nacionalidad es válida y la asigno correctamente.
 		this.nacionalidad = switch (nacionalidad.toUpperCase()) {
-			case "ESPAÑOLA" -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
-			case "EXTRANJERA" -> this.nacionalidad = Nacionalidad.EXTRANJERA;
-			default -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+			case "ESPAÑOLA" -> Nacionalidad.ESPAÑOLA;
+			case "EXTRANJERA" -> Nacionalidad.EXTRANJERA;
+			default -> Nacionalidad.ESPAÑOLA;
 		};
 	}
 
 	/**
-	 * Metodo de la clase CuentaCorriente donde obtengo el valor de nombre
-	 * @return nombre de la persona
+	 * Obtiene el nombre del titular de la cuenta.
+	 * @return nombre de la persona.
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 	
 	/**
-	 * Metodo con el cual puedo actualizar el nombre de una persona de su cuenta corriente
-	 * @param nombre de la persona de la cuenta
+	 * Actualiza el nombre del titular de la cuenta.
+	 * @param nombre nuevo nombre del titular.
 	 */
 	public void setNombre(String nombre) {
 		if (nombre != null && !nombre.isBlank()) {
@@ -83,111 +78,107 @@ public class CuentaCorriente {
 	}
 
 	/**
-	 * Metodo para obtener el saldo de una Cuenta Corriente.
-	 * @return saldo de una cuenta
+	 * Obtiene el saldo disponible en la cuenta corriente.
+	 * @return saldo de la cuenta.
 	 */
 	public double getSaldo() {
 		return saldo;
 	}
 
 	/**
-	 * Metodo para actualizar el saldo de una cuenta corriente.
-	 * @param saldo nuevo saldo con el que se quiera actualizar en la cuenta
+	 * Actualiza el saldo de la cuenta corriente.
+	 * @param saldo nuevo saldo que se quiere establecer en la cuenta.
 	 */
 	public void setSaldo(double saldo) {
-		
-	    this.saldo = saldo;
+		this.saldo = saldo;
 	}
 
 	/**
-	 * Metodo para obtener la nacionalidad de una cuenta corriente
-	 * @return nacionalidad de la cuenta
+	 * Obtiene la nacionalidad de la cuenta corriente.
+	 * @return nacionalidad de la cuenta.
 	 */
 	public Nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}
 
 	/**
-	 * Metodo para actualizar la nacionalidad de una cuenta corriente.
-	 * @param nacionalidad nueva nacionalidad que queremos actualizar de una cuenta
+	 * Actualiza la nacionalidad de la cuenta corriente.
+	 * @param nacionalidad nueva nacionalidad que queremos asignar a la cuenta.
 	 */
 	public void setNacionalidad(String nacionalidad) {
-		// Compruebo si la nacionalidad es valida llamando a la siguiente funcion y le doy el valor que me devuelva a this.nacionalidad si este ha sido valido.
-		switch (nacionalidad.toUpperCase()) {
-		case "ESPAÑOLA" -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
-		case "EXTRANJERA" -> this.nacionalidad = Nacionalidad.EXTRANJERA;
-		default -> this.nacionalidad = Nacionalidad.ESPAÑOLA;
+		this.nacionalidad = switch (nacionalidad.toUpperCase()) {
+			case "ESPAÑOLA" -> Nacionalidad.ESPAÑOLA;
+			case "EXTRANJERA" -> Nacionalidad.EXTRANJERA;
+			default -> Nacionalidad.ESPAÑOLA;
 		};
 	}
 
 	/**
-	 * Funcion para validad el DNI que introducen en el constructor
-	 * @param DNI dni introducido para referenciar a una persona en una cuenta
-	 * @return DNI dni validado para poder aplicarlo en el constructor o de donde queramos validar el dni introducido.
+	 * Valida el DNI introducido.
+	 * @param DNI dni introducido para referenciar a una persona en una cuenta.
+	 * @return DNI validado para aplicarlo en el constructor o donde sea necesario.
+	 * @throws IllegalArgumentException si el DNI no es válido.
 	 */
 	private String validarDNI(String DNI) {
 		if (DNI == null || DNI.isBlank() || DNI.length() != 9) {
 			throw new IllegalArgumentException("DNI no válido");
 		}
-		// Si no se lanza la exception devuelvo DNI para asignarselo a this.DNI en el constructor.
 		return DNI;
 	}
 	
 	/**
-	 * Metodo donde se puede sacar dinero usando una resta entre el dinero que se quiere sacar y el que ya se tiene en la cuenta (si se puede).
-	 * @param dinero Cantidad indicada por el titular que quiere sacar 
-	 * @return estado Devuelve true o false dependiendo si se puede realizar la acción o no.
+	 * Permite retirar dinero de la cuenta si hay suficiente saldo.
+	 * @param dinero cantidad que se quiere retirar.
+	 * @return true si la operación se realizó con éxito, false si no hay suficiente saldo.
 	 */
 	public boolean sacarDinero(double dinero) {
 		
 		boolean estado = false;
 		
-		
 		if (dinero > 0 && this.saldo >= dinero) {
-		    this.saldo -= dinero;
-		    estado = true;
+			this.saldo -= dinero;
+			estado = true;
 		}
-		
 		return estado;
 	}
 	
-	
+	/**
+	 * Permite ingresar dinero en la cuenta corriente.
+	 * @param dinero cantidad que se quiere ingresar.
+	 * @return true si el ingreso se realizó con éxito, false si el monto es inválido.
+	 */
 	public boolean ingresarDinero(double dinero) {
 		
 		boolean estado = false;
 		
-		// 0 no voy a poder ingresar porque no tiene sentido y almenos debe ser positivo.
 		if (dinero > 0) {
-			estado = true;
 			this.saldo += dinero;
+			estado = true;
 		}
-		
 		return estado;
-		
 	}
 	
+	/**
+	 * Devuelve una representación en texto de la cuenta corriente.
+	 * @return cadena con la información de la cuenta.
+	 */
 	@Override
 	public String toString() {
-		String informacion = "Titular: " + this.nombre;
-		informacion += "\nDNI del Titular: " + this.DNI;
-		informacion += "\nSaldo: " + this.saldo;
-		informacion += "\nNacionalidad: " + this.nacionalidad;
-		
-		return informacion;
+		return "Titular: " + this.nombre + "\n" +
+			   "DNI del Titular: " + this.DNI + "\n" +
+			   "Saldo: " + this.saldo + "\n" +
+			   "Nacionalidad: " + this.nacionalidad;
 	}
 	
+	/**
+	 * Compara dos cuentas corrientes y determina si son iguales.
+	 * @param cC objeto a comparar.
+	 * @return true si las cuentas son iguales (mismo nombre y DNI), false en caso contrario.
+	 */
 	@Override
 	public boolean equals(Object cC) {
-		
 		CuentaCorriente cuenta2 = (CuentaCorriente) cC;
 		
-		boolean iguales = false;
-		
-		if (this.nombre.equals(cuenta2.nombre) && this.DNI.equals(cuenta2.DNI)) {
-			iguales = true;
-		}
-		
-		return iguales;
-		
+		return this.nombre.equals(cuenta2.nombre) && this.DNI.equals(cuenta2.DNI);
 	}
 }
