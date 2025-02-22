@@ -55,10 +55,5 @@ public class FuncionesMatematicas {
         }
         return resultado;
     }
-    /**
-     * Calcula el sumatorio de un número de forma recursiva.
-     * 
-     * @param numero Número hasta el cual se desea calcular el sumatorio.
-     * @return La suma de todos los números desde 1 hasta el número dado.
-     */
+
 }
