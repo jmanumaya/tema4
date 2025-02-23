@@ -132,11 +132,15 @@ public class Articulo {
      * @return true si la venta se realizó con éxito, false si no hay suficiente stock.
      */
     public boolean vender(int cantidad) {
+    	
+    	boolean estado = false;
+    	
         if (cantidad > 0 && cantidad <= cuantosQuedan) {
             cuantosQuedan -= cantidad;
-            return true;
+            estado = true;
         }
-        return false;
+        
+        return estado;
     }
     
     /**
