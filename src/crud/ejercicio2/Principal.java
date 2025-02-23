@@ -109,6 +109,8 @@ public class Principal {
 					}
 				}
 				
+				default -> {System.out.println("Opción Introducida No Válida");}
+				
 			}
 			
 		} while (!opcion.equals("G"));
