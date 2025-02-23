@@ -143,10 +143,16 @@ public class Articulo {
      * Almacena una cantidad adicional de artículos en stock.
      * @param cantidad Cantidad a agregar al stock.
      */
-    public void almacenar(int cantidad) {
+    public boolean almacenar(int cantidad) {
+    	
+    	boolean estado = false;
+    	
         if (cantidad > 0) {
             cuantosQuedan += cantidad;
+            estado = true;
         }
+        
+        return estado;
     }
     
     /**

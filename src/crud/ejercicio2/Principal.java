@@ -109,6 +109,22 @@ public class Principal {
 					}
 				}
 				
+				case "E" -> {
+					
+					System.out.println("Entrada de Mercancia");
+					System.out.print("Indica el nombre del Artículo (del que entra mercancía): ");
+					nombre = sc.nextLine();
+					
+					if(gestimal.buscaArticulo(nombre)) {
+						
+						System.out.print("Indica la Cantidad de Mercancía que Entra (Número): ");
+						entradaMercancia = sc.nextInt();
+						System.out.println(gestimal.entradaMercancia(nombre, entradaMercancia) ? "Proceso Realizado Correctamente" : "Error: La entrada indicada no es valida");
+					} else {
+						System.out.println("El Artículo " + nombre + " no Existe");
+					}
+				}
+				
 				default -> {System.out.println("Opción Introducida No Válida");}
 				
 			}
