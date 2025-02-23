@@ -111,7 +111,7 @@ public class Principal {
 				
 				case "E" -> {
 					
-					System.out.println("Entrada de Mercancia");
+					System.out.println("Entrada de Mercancía");
 					System.out.print("Indica el nombre del Artículo (del que entra mercancía): ");
 					nombre = sc.nextLine();
 					
@@ -125,12 +125,31 @@ public class Principal {
 					}
 				}
 				
+				case "F" -> {
+					
+					System.out.println("Salida de Mercancía");
+					System.out.print("Indica el nombre del Artículo (del que sale mercancía): ");
+					nombre = sc.nextLine();
+					
+					if(gestimal.buscaArticulo(nombre)) {
+						
+						System.out.print("Indica la Cantidad de Mercancía que Sale (Número): ");
+						salidaMercancia = sc.nextInt();
+						System.out.println(gestimal.salidaMercancia(nombre, salidaMercancia) ? "Proceso Realizado Correctamente" : "Error: Se ha indicado una salida mayor al Stock disponible");
+					} else {
+						System.out.println("El Artículo " + nombre + " no Existe");
+					}
+				}
+				
+				case "G" ->{System.out.println("\nCerrando Programa...");}
+				
 				default -> {System.out.println("Opción Introducida No Válida");}
 				
 			}
 			
 		} while (!opcion.equals("G"));
 		
+		System.out.println("\nPrograma Cerrado");
 		sc.close();
 	}
 

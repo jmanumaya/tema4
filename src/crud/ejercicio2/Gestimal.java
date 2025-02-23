@@ -78,6 +78,20 @@ public class Gestimal {
 		return estado;
 	}
 	
+	public boolean salidaMercancia(String nombre, int salidaMerca) {
+		
+		boolean estado = false;
+		
+		for (Articulo a : articulos) {
+			if (a.getNombre().equalsIgnoreCase(nombre)) {
+				estado = a.vender(salidaMerca);
+				break;
+			}
+		}
+		
+		return estado;
+	}
+	
 	public boolean buscaArticulo(String nombre) {
 		
 		boolean estado = false;
