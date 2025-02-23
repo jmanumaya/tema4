@@ -2,9 +2,6 @@ package crud.ejercicio2;
 
 import java.util.Scanner;
 
-import crud.ejercicio1.Alumno;
-import crud.ejercicio1.Crud;
-
 public class Principal {
 
 	public static void main(String[] args) {
@@ -20,9 +17,6 @@ public class Principal {
 		
 		// Variable para almacenar el nombre dado en cada caso del articulo.
 		String nombre = "";
-		
-		// Variable estado que va a servir para controlar la modificacion de algun articulo
-		boolean estado = false;
 		
 		// Variable que va a ir conteniendo el precio de cada articulo en cada caso
 		double precio;
