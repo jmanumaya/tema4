@@ -29,24 +29,30 @@ public class Crud {
      */
     public boolean nuevoAlumno(String nombre, double notaMedia) {
         boolean estado = false;
+        
+        Alumno a = new Alumno(nombre, notaMedia);
 
-        if (nombre != null && !nombre.isEmpty() && notaMedia >= 0 && notaMedia <= 10) {
-            // Verifica si ya existe un alumno con el mismo nombre.
-            boolean existe = false;
-            for (Alumno a : alumnos) {
-                if (a.getNombre().equalsIgnoreCase(nombre)) {
-                    existe = true;
-                    break; // ¡¡¡¡¡¡Preguntar si permitía break en for-each!!!!!!
-                }
-            }
-
-            // Si no existe, se añade el nuevo alumno.
-            if (!existe) {
-                Alumno alum = new Alumno(nombre, notaMedia);
-                alumnos.add(alum);
-                estado = true;
-            }
+        if(!alumnos.contains(a)) {
+        	estado = alumnos.add(a);
         }
+        
+//        if (nombre != null && !nombre.isEmpty() && notaMedia >= 0 && notaMedia <= 10) {
+//            // Verifica si ya existe un alumno con el mismo nombre.
+//            boolean existe = false;
+//            for (Alumno a : alumnos) {
+//                if (a.getNombre().equalsIgnoreCase(nombre)) {
+//                    existe = true;
+//                    break; // ¡¡¡¡¡¡Preguntar si permitía break en for-each!!!!!!
+//                }
+//            }
+//
+//            // Si no existe, se añade el nuevo alumno.
+//            if (!existe) {
+//                Alumno alum = new Alumno(nombre, notaMedia);
+//                alumnos.add(alum);
+//                estado = true;
+//            }
+//        }
 
         return estado;
     }
@@ -105,7 +111,7 @@ public class Crud {
                 if (a.getNombre().equalsIgnoreCase(nombre)) {
                     alumnos.remove(a);
                     estado = true;
-                    break;
+                    break; //No quiereeeee
                 }
             }
         }

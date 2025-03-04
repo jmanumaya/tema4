@@ -1,5 +1,7 @@
 package crud.ejercicio1;
 
+import java.util.Objects;
+
 /**
  * Clase Alumno que almacena el nombre y la nota media de un estudiante.
  */
@@ -59,7 +61,12 @@ public class Alumno {
         return nombre + ": " + notaMedia;
     }
 
-    /**
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre);
+	}
+
+	/**
      * Compara dos objetos Alumno basándose en el nombre.
      * @param obj Objeto a comparar.
      * @return true si los alumnos tienen el mismo nombre, false en caso contrario.
@@ -71,5 +78,7 @@ public class Alumno {
         
         return this.nombre.equalsIgnoreCase(otroAlumno.nombre);
     }
+
+    
 }
 
