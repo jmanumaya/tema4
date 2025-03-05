@@ -63,12 +63,14 @@ public class Principal {
 				case "B" -> {
 					
 					System.out.println("Nuevo Pedido");
-					System.out.print("Elige Tamaño (Mediana - Grande): ");
+					System.out.print("Elige Tamaño (Mediana - Familiar): ");
 					tamaño = sc.next();
 					System.out.print("Elige Tipo (Margarita, CuatroQuesos, Funghi): ");
 					tipo = sc.next();
 					
-					if(crud.nuevoPedido(codigo, tamaño, tipo)) {
+					Pizza p = new Pizza(codigo, tamaño, tipo);
+					
+					if(crud.nuevoPedido(p)) {
 						++codigo;
 						System.out.println("Pedido Registrado Correctamente");
 					} else {

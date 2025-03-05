@@ -11,7 +11,7 @@ public class Crud {
 		return pizzas;
 	}
 	
-	public boolean nuevoPedido(int codigo, String tamaño, String tipo) {
-		
+	public boolean nuevoPedido(Pizza p) {
+		return pizzas.add(p);
 	}
 }
