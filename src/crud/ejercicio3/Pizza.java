@@ -1,117 +1,92 @@
 package crud.ejercicio3;
 
 /**
- * Clase que representa una Pizza con código único, tamaño, tipo y estado.
+ * Representa una pizza con su código, tamaño y tipo.
  */
 public class Pizza {
 
     /**
-     * Enumeración para los tamaños de la pizza.
+     * Enumeración para los posibles tamaños de la pizza.
      */
-    public enum Tamaño { MEDIANA, FAMILIAR }
+    public enum Tamaño {
+        MEDIANA, FAMILIAR
+    }
 
     /**
-     * Enumeración para los tipos de pizza.
+     * Enumeración para los posibles tipos de pizza.
      */
-    public enum Tipo { MARGARITA, CUATROQUESOS, FUNGHI }
+    public enum TipoPizza {
+        MARGARITA, CUATROQUESOS, FUNGHI
+    }
 
-    /**
-     * Enumeración para los estados de la pizza.
-     */
-    public enum Estado { PEDIDA, SERVIDA }
-
-    private final int codigo;
+    private int codigo;
     private Tamaño tamaño;
-    private Tipo tipo;
-    private Estado estado;
+    private TipoPizza tipo;
 
     /**
-     * Constructor de la clase Pizza.
-     * El estado siempre será "PEDIDA" al crear una nueva pizza.
-     * 
-     * @param codigo Código único de la pizza.
-     * @param tamaño Tamaño de la pizza (Mediana o Familiar).
-     * @param tipo   Tipo de la pizza (Margarita, CuatroQuesos o Funghi).
+     * Constructor para crear una nueva pizza.
+     *
+     * @param codigo El código único de la pizza.
+     * @param tamaño El tamaño de la pizza (MEDIANA o FAMILIAR).
+     * @param tipo   El tipo de pizza (MARGARITA, CUATROQUESOS o FUNGHI).
+     * @throws IllegalArgumentException si el código es negativo o si el tamaño o el tipo son nulos.
      */
     public Pizza(int codigo, String tamaño, String tipo) {
+        if (codigo < 0) {
+            throw new IllegalArgumentException("El código de la pizza no puede ser negativo.");
+        }
+        if (tamaño == null) {
+            throw new IllegalArgumentException("El tamaño de la pizza no puede ser nulo.");
+        }
+        if (tipo == null) {
+            throw new IllegalArgumentException("El tipo de la pizza no puede ser nulo.");
+        }
+
+        try {
+            this.tamaño = Tamaño.valueOf(tamaño.toUpperCase());
+            this.tipo = TipoPizza.valueOf(tipo.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Tamaño o tipo de pizza no válido.");
+        }
+
         this.codigo = codigo;
-        this.tamaño = Tamaño.valueOf(tamaño.toUpperCase());
-        this.tipo = Tipo.valueOf(tipo.toUpperCase());
-        this.estado = Estado.PEDIDA; // Siempre inicia como "Pedida"
     }
     
-    public boolean compruebaDatos(String tamaño, String tipo) {
-    	
-    	boolean estado = false;
-    	
-    	if((Tamaño. != -1){
-    		
-    	}
-    	
-    	return estado;
-    }
-
     /**
-     * Devuelve el código de la pizza.
-     * @return Código de la pizza.
+     * Obtiene el código de la pizza.
+     *
+     * @return El código de la pizza.
      */
     public int getCodigo() {
         return codigo;
     }
 
     /**
-     * Devuelve el tamaño de la pizza.
-     * @return Tamaño de la pizza.
+     * Obtiene el tamaño de la pizza.
+     *
+     * @return El tamaño de la pizza.
      */
     public Tamaño getTamaño() {
         return tamaño;
     }
 
     /**
-     * Devuelve el tipo de la pizza.
-     * @return Tipo de la pizza.
+     * Obtiene el tipo de la pizza.
+     *
+     * @return El tipo de la pizza.
      */
-    public Tipo getTipo() {
+    public TipoPizza getTipo() {
         return tipo;
     }
 
     /**
-     * Devuelve el estado actual de la pizza.
-     * @return Estado de la pizza.
-     */
-    public Estado getEstado() {
-        return estado;
-    }
-
-    /**
-     * Permite cambiar el estado de la pizza a "Servida".
-     */
-    public void servir() {
-        this.estado = Estado.SERVIDA;
-    }
-
-    /**
-     * Devuelve una representación en texto de la pizza.
-     * @return Cadena con los detalles de la pizza.
+     * Devuelve una representación en cadena de la pizza.
+     *
+     * @return Una cadena que representa la pizza.
      */
     @Override
     public String toString() {
-        return codigo + ": " + tamaño + " - " + tipo + " - " + estado;
-    }
-
-    /**
-     * Compara dos pizzas para determinar si son iguales.
-     * Son iguales si tienen el mismo código.
-     * 
-     * @param obj Objeto a comparar.
-     * @return true si las pizzas tienen el mismo código, false en caso contrario.
-     */
-    @Override
-    public boolean equals(Object obj) {
-
-        Pizza otraPizza = (Pizza) obj;
-        
-        return this.codigo == otraPizza.codigo;
+        return "Código: " + codigo + ", Tamaño: " + tamaño + ", Tipo: " + tipo;
     }
 }
 
