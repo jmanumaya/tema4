@@ -2,6 +2,8 @@ package parte3.ejercicio6;
 
 /**
  * Clase que proporciona funciones matemáticas recursivas.
+ * @author jmaya
+ * @version 1.0
  */
 public class FuncionesMatematicas {
 
