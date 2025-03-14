@@ -1,5 +1,7 @@
 package crud.ejercicio5;
 
+import java.util.Objects;
+
 /**
  * La clase CuentaCorriente va a permitir poder crear distintos objetos con atributos como Nacionalidad, DNI, nombre y saldo 
  * correspondientes a datos básicos de una persona en una cuenta corriente.
@@ -14,6 +16,10 @@ public class CuentaCorriente {
 	private String nombre;
 	private double saldo;
 	private Nacionalidad nacionalidad;
+	
+	public CuentaCorriente(String DNI) {
+		this.DNI = validarDNI(DNI);
+	}
 	
 	/**
 	 * Constructor de la clase CuentaCorriente que va a permitir crear un objeto en base a los siguientes parámetros dados.
@@ -164,21 +170,29 @@ public class CuentaCorriente {
 	 */
 	@Override
 	public String toString() {
-		return "Titular: " + this.nombre + "\n" +
-			   "DNI del Titular: " + this.DNI + "\n" +
-			   "Saldo: " + this.saldo + "\n" +
-			   "Nacionalidad: " + this.nacionalidad;
+		return "💠 Titular: " + this.nombre + "\n" +
+			   "   DNI del Titular: " + this.DNI + "\n" +
+			   "   Saldo: " + this.saldo + "\n" +
+			   "   Nacionalidad: " + this.nacionalidad;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(DNI);
+	}
+
 	/**
 	 * Compara dos cuentas corrientes y determina si son iguales.
-	 * @param cC objeto a comparar.
-	 * @return true si las cuentas son iguales (mismo nombre y DNI), false en caso contrario.
+	 * @param obj objeto a comparar.
+	 * @return true si las cuentas son iguales (mismo DNI), false en caso contrario.
 	 */
 	@Override
-	public boolean equals(Object cC) {
-		CuentaCorriente cuenta2 = (CuentaCorriente) cC;
+	public boolean equals(Object obj) {
 		
-		return this.nombre.equals(cuenta2.nombre) && this.DNI.equals(cuenta2.DNI);
+		CuentaCorriente cuenta2 = (CuentaCorriente) obj;
+		
+		return this.DNI.equals(cuenta2.DNI);
 	}
+	
+	
 }
